@@ -1,0 +1,17 @@
+{
+  "name": "bg-web-assignment",
+  "version": "1.0.0",
+  "description": "BlueGround static website assessment",
+  "author": "Alexander Koukovistas",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {}
+}
