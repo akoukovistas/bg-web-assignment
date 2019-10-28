@@ -1,6 +1,12 @@
 <template>
 <div class="property-listing">
-	<img :src="image" :alt="this.property.imageAlt" class="property-listing_image">
+	<div class="overlay" @mouseover="hover = true" @mouseleave="hover = false" :class='{ "overlay--hover" : hover }'>
+		<img :src="image" :alt="this.property.imageAlt" class="property-listing__image">
+		<div class="overlay__content" :class='{ "overlay__content--hover" : hover }' >
+			<a href="#" class="overlay__book-now">Book now</a>
+			<p class="overlay__property-title">{{this.property.name}}</p>
+		</div>
+	</div>
 	<div class="property-info">
 		<div class="property-info__column property-info__column--left">
 			<h3 class="property-info__title">{{this.property.name}} - {{this.property.region}}</h3>
@@ -29,6 +35,7 @@ export default {
 	],
 	data() {
 		return {
+			hover: false,
 			starsLeft : 5,
 			image: '../../assets/images/' + this.property.imageName
 		}
@@ -51,13 +58,16 @@ export default {
 		justify-content: center;
 	}
 
-	.property-listing_image {
+	.property-listing__image {
 
 		max-width:100%;
 		border: 2px solid #e3e3e3;
 		border-radius: 3%;
 		padding: 1rem;
 		margin: 1rem 0;
+		object-fit: cover;
+		grid-area: image;
+		grid-row: 1 / -1;
 	}
 
 	.property-info {
@@ -87,5 +97,45 @@ export default {
 		color: grey;
 	}
 
+	.overlay {
+		display: grid;
+		grid-gap: 1rem;
+		grid-template-areas:
+		"image image image"
+		" . content ."
+		". . .";
+	}
+
+	.overlay--hover .property-listing__image {
+		opacity: 0.4;
+		background: #e3e3e3;
+	}
+
+	.overlay__content {
+		opacity: 0;
+		grid-area: content;
+		padding: 1rem;
+		display: grid;
+		grid-gap: 1rem;
+		grid-row: 2;
+		justify-content: start;
+	}
+
+	.overlay__content--hover {
+		opacity: 1;
+		z-index: 999;
+	}
+
+	.overlay__book-now {
+		color: black;
+		text-decoration: none;
+		border: 1px solid;
+		padding: 0.5rem;
+	}
+
+	.overlay__book-now:hover {
+		background-color: #000000;
+		color: white;
+	}
 
 </style>
