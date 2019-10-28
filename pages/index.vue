@@ -36,7 +36,7 @@ export default {
         document.body.querySelector('.form__input-label[for="' + input.target.getAttribute('id') + '"]').style.display = "block";
 	  },
 	  submit() {
-		  this.$router.push('/browse/');
+		  window.location.href = "/browse/"
 	  }
 
   }
