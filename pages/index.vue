@@ -44,9 +44,11 @@ export default {
 .container {
 	margin: 0 auto;
 	min-height: 100vh;
+	justify-content: center;
+	text-align: center;
 	display: grid;
 	grid-template-columns: repeat( 3, 1fr );
-	grid-template-rows: 40% auto 40%;
+	grid-template-rows: 20% 350px 200px;
 }
 
 .login-box {
