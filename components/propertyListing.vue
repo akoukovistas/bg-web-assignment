@@ -10,7 +10,7 @@
 	<div class="property-info">
 		<div class="property-info__column property-info__column--left">
 			<h3 class="property-info__title">{{this.property.name}} - {{this.property.region}}</h3>
-			<p class="property-info__description">{{this.property.description}}</p>
+			<p class="property-info__description">{{this.property.shortDescription}}</p>
 			<a :href="this.property.cancellationPolicy" class="property-info__cancellation">Cancellation Policy</a>
 			<p class="property-info__price">{{this.property.price}} ₪</p>
 			<span class="property-info__rating">
