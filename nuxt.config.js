@@ -46,7 +46,11 @@ export default {
 		  {
 			set: '@fortawesome/free-solid-svg-icons',
 			icons: ['faStar']
-		  }
+		  },
+		  {
+			set: '@fortawesome/free-solid-svg-icons',
+			icons: ['faUser']
+		  },
 		]
 	  }]
   ],

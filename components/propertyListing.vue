@@ -12,7 +12,7 @@
 			</span>
 
 		</div>
-		<div class="property-info__column property-info__column--right">
+		<div class="property-info__column property-info__column--right"  v-if="this.property.peopleViewing" >
 			<span class="property-info__people-viewing" v-if="this.property.peopleViewing == 1">{{this.property.peopleViewing}} person checking it now</span>
 			<span class="property-info__people-viewing" v-else-if="this.property.peopleViewing > 1">{{this.property.peopleViewing}} people checking it now</span>
 		</div>
@@ -45,12 +45,15 @@ export default {
 
 <style scoped>
 	.property-listing {
+		max-width:100%;
 		display:grid;
 		grid-template-rows: 1fr 0.5fr;
 		justify-content: center;
 	}
 
 	.property-listing_image {
+
+		max-width:100%;
 		border: 2px solid #e3e3e3;
 		border-radius: 3%;
 		padding: 1rem;
@@ -59,7 +62,7 @@ export default {
 
 	.property-info {
 		display: grid;
-		grid-template-columns: repeat( 2, 1fr );
+		grid-template-columns: repeat( auto-fit, minmax(0px, 1fr));
 	}
 
 	.property-info__column--left {
