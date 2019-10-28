@@ -1,19 +1,21 @@
 <template>
-  <div class="container">
-	  <div class="header" id="header">
-		<div class="logo"><a href="/" class="logo__text">Blueground on <span class="mars-circle mars-circle__inverse">Mars</span></a></div>
-		<div class="user-details">
-			<a href="#" class="profile-link"><fa :icon="['fas', 'user']" /> <span class="profile-link__text">Arthas Menethil</span></a>
+	<div class="container">
+		<div class="header" id="header" >
+			<div class="logo"><a href="/" class="logo__text">Blueground on <span class="mars-circle mars-circle__inverse">Mars</span></a></div>
+			<div class="user-details">
+			<a href="#" class="profile-link" @click="openTray" ><fa :icon="['fas', 'user']" /> <span class="profile-link__text">Arthas Menethil</span></a>
 		</div>
-		<div class="search-container"><input type="text" placeholder="Search.."  v-on:click="adjustInput"></div>
-	  </div>
-	  <div class="property-listings">
+			<div class="search-container"><input type="text" placeholder="Search.."  v-on:click="adjustInput"></div>
+		</div>
+		<div class="property-listings" @click="closeTray">
+			<listing  v-for="property in propertyList" v-bind:property="property"/>
+		</div>
+		<div id="propertyTray" class="property-tray" :class="{ 'property-tray--open' : propertyTrayOpen }" ref="propertyTray">
 
-			  <listing v-for="property in propertyList" v-bind:property="property"/>
-
-	  </div>
+		</div>
   </div>
 </template>
+
 
 <script>
 
@@ -27,7 +29,8 @@ export default {
 	},
 	data() {
 		return {
-			propertyList: this.$store.state.properties.list
+			propertyList: this.$store.state.properties.list,
+			propertyTrayOpen: false
 		}
 	},
 	computed: {
@@ -42,6 +45,15 @@ export default {
 		}),
 		adjustInput: function (input) {
 			input.target.setAttribute( "placeholder", "" );
+		},
+		openTray: function () {
+			console.log(this.$refs);
+			this.$refs.propertyTray.style.width = "50%";
+			this.propertyTrayOpen = true;
+		},
+		closeTray: function () {
+			this.$refs.propertyTray.style.width = "0px";
+			this.propertyTrayOpen = false;
 		}
 	}
 }
@@ -129,6 +141,31 @@ export default {
 	background-color: #fff;
 	color: #000;
 	border: 2px solid #000;
+}
+
+.property-tray {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: #e3e3e3;
+  overflow-x: hidden;
+  transition: 0.5s;
+  box-shadow: -5px 0px 10px 1px #888888;
+}
+
+.property-tray .property-tray__close {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .property-tray {padding-top: 15px;}
 }
 
 </style>

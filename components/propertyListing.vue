@@ -3,13 +3,13 @@
 	<div class="overlay" @mouseover="hover = true" @mouseleave="hover = false" :class='{ "overlay--hover" : hover }'>
 		<img :src="image" :alt="this.property.imageAlt" class="property-listing__image">
 		<div class="overlay__content" :class='{ "overlay__content--hover" : hover }' >
-			<a href="#" class="overlay__book-now">Book now</a>
+			<a href="#" class="overlay__book-now" >Book now</a>
 			<p class="overlay__property-title">{{this.property.name}}</p>
 		</div>
 	</div>
 	<div class="property-info">
 		<div class="property-info__column property-info__column--left">
-			<h3 class="property-info__title">{{this.property.name}} - {{this.property.region}}</h3>
+			<h3 class="property-info__title" >{{this.property.name}} - {{this.property.region}}</h3>
 			<p class="property-info__description">{{this.property.shortDescription}}</p>
 			<a :href="this.property.cancellationPolicy" class="property-info__cancellation">Cancellation Policy</a>
 			<p class="property-info__price">{{this.property.price}} ₪</p>
@@ -23,7 +23,6 @@
 			<span class="property-info__people-viewing" v-else-if="this.property.peopleViewing > 1">{{this.property.peopleViewing}} people checking it now</span>
 		</div>
 	</div>
-
 </div>
 </template>
 
@@ -137,5 +136,34 @@ export default {
 		background-color: #000000;
 		color: white;
 	}
+
+	.property-tray {
+		position: fixed;
+		z-index: 99;
+		width: 100vw;
+		height: 100vh;
+		top: 0;
+		bottom: 0;
+		-webkit-transform: translateX(-100%);
+		transform: translateX(-100%);
+		-webkit-transition: -webkit-transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+		transition: -webkit-transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+		transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+		transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1), -webkit-transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+		display: -ms-grid;
+		display: grid;
+		grid-template-areas: 'MENU OVERLAY';
+		-ms-grid-columns: 15fr 5fr;
+		grid-template-columns: 15fr 5fr
+	}
+
+	@media (min-width: 30em) {
+
+		.property-tray {
+			-ms-grid-columns: 5fr 10fr;
+			grid-template-columns: 5fr 10fr;
+		}
+	}
+
 
 </style>
