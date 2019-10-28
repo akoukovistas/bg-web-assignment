@@ -4,6 +4,7 @@
       <div class="login-box__branding login-box__element-container">
         <h2>Blueground on <span class="mars-circle mars-circle__primary">Mars</span></h2>
       </div>
+	  <form>
       <div class="login-box__form-fields form login-box__element-container">
         <input type="text" id="colonist_id" class="form__input" v-on:click="adjustInput" :placeholder="colonist_placeholder">
         <label for="colonist_id" class="form__input-label">{{colonist_placeholder}}</label>
@@ -11,8 +12,9 @@
         <label for="password" class="form__input-label">{{password_placeholder}}</label>
       </div>
       <div class="login-box__form-actions login-box__element-container">
-        <input class="form__submit" type="submit" value="Sign In"/>
+        <input class="form__submit" type="submit"  @click.stop.prevent="submit()" value="Sign In"/>
       </div>
+	  </form>
     </div>
   </div>
 </template>
@@ -32,7 +34,10 @@ export default {
       adjustInput: function (input) {
         input.target.setAttribute("placeholder","");
         document.body.querySelector('.form__input-label[for="' + input.target.getAttribute('id') + '"]').style.display = "block";
-      }
+	  },
+	  submit() {
+		  window.location.href = "/browse/"
+	  }
 
   }
 }
